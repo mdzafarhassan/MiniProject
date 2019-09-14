@@ -1,0 +1,102 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Everone's Library</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+</head>
+<body>
+
+	<header id="main-header">
+		<div class="container">
+			<h1>Everone's Library</h1>
+		</div>
+	</header>
+
+
+    {% block nav %}
+		<nav id="navbar">
+			<div class="container">
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="books">Browse Books</a></li>
+					<li><a href="">About Us</a></li>
+					<li><a href="">Career</a></li>
+					<li><a href="">Contact Us</a></li>
+					<li><a href="test">Test</a></li>
+					<li><a href="add">Add</a></li>
+					{% if user.is_authenticated %}
+						<a href="/logout"><button>Logout</button></a>
+						<li style="float: right; padding: 0px 10px;">Hello, {{user.first_name}} {{user.last_name}}</li>
+					{% else %}
+						<button id="btn_login" style="width:auto;">Login</button>
+						<a href="/register"><button>Register</button></a>
+					{% endif %}
+				</ul>
+
+			</div>
+		</nav>
+
+		<div id="id01" class="modal">
+
+			<form class="modal-content animate" action="login" method="POST">
+				{% csrf_token %}
+				<div class="imgcontainer">
+					<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+					<img src="{% static 'images/img_avatar2.png' %}" alt="Avatar" class="avatar">
+				</div>
+
+				<div class="container">
+					<label for="usrn"><b>Username</b></label>
+					<input id='username' type="text" placeholder="Enter Username" name="username" required>
+
+					<label for="pswd"><b>Password</b></label>
+					<input type="password" placeholder="Enter Password" name="password" required>
+
+					<button type="submit">Login</button>
+
+					<label>
+					<input type="checkbox" checked="checked" name="remember"> Remember me
+					</label>
+				</div>
+
+				<div class="container" style="background-color:#f1f1f1">
+				<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+				<span class="psw">Forgot <a href="#">password?</a></span>
+				</div>
+			</form>
+			<form action=""></form>
+		</div>
+
+		<script>
+			// Get the modal
+			var modal = document.getElementById('id01');
+
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function(event) {
+				if (event.target == modal) {
+					modal.style.display = "none";
+				}
+			}
+
+			var login_button = document.getElementById('btn_login');
+			login_button.onclick = function(show_login){
+				modal.style.display = 'block';
+				document.getElementById('username').focus();
+
+			}
+		</script>
+	{% endblock %}
+
+
+    {% block content %}
+    {% endblock %}
+
+
+	<footer id="main-footer">
+		<p> Library Management, Copyright &copy; 2019. MyWebsite&reg;, Md Zafar Hassan</p>
+	</footer>
+
+</body>
+</html>

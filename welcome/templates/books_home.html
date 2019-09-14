@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+
+	{% block content %}
+		<section id="showcase">
+			<div class="container">
+				<h1> Books Home </h1>
+				<h2>Browse -> Select Book -> Buy It -> Read Anywhere Anytime.</h2>
+			</div>
+		</section>
+
+		<div class="container">
+			<section id="main">
+
+<!--                Section Starts: Best Sellers-->
+                <div class="book-section">
+                <h1>Best Sellers</h1>
+
+                    {% for book in '123456' %}
+
+                        <div class="book-container">
+                            <div class="book-tile">
+                                {{book}}.
+                            </div>
+
+                            <div class="book-button">
+                                <button class="btnBookInfo">Info</button>
+                                <button class="btnBookBuy">Buy</button>
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+<!--                Section Ends: Best Sellers-->
+
+<!--                Section Starts:Most Rated Books-->
+                <div class="book-section">
+                <h1>Most Rated</h1>
+
+                    {% for novel in 'abcde' %}
+                        <div class="book-container">
+                            {{novel}}
+                        </div>
+                    {% endfor %}
+
+                </div>
+<!--                Section Ends: Most Rated Books-->
+
+            </section>
+
+			<aside id="sidebar">
+                <h1>Best Offer</h1>
+                <p>This is the test para to check for text in offer section of Book Home page <br>Enjoy reading</p>
+			</aside>
+		</div>
+
+
+	{% endblock %}

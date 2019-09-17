@@ -73,8 +73,9 @@ def books(request):
 
 # Testing/RnD and Debugging Views/Codes
 def test(request):
+    context = {"media": "abc.png"}
     val = 'this is test value'
-    return render(request, 'test.html', {'value': val})
+    return render(request, 'test.html', context)
 
 
 def add(request):

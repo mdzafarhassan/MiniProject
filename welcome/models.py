@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Books(models.Model):
+class BookMaster(models.Model):
     book_type = models.CharField(max_length=50)
     book_name = models.CharField(max_length=150)
     book_author = models.CharField(max_length=100)

@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4005e7b1-d53c-4626-b51f-97331475e4d4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniproject/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/miniproject/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/miniproject/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/miniproject/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/welcome/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/welcome/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/welcome/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/welcome/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/welcome/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/welcome/templates/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/welcome/templates/test.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/welcome/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/welcome/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/welcome/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/welcome/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -75,10 +77,23 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/welcome/views.py</url>
+          <line>74</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

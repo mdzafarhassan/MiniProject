@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import auth, User
 from django.contrib import messages
-from .models import Books
+from .models import BookMaster
 
 
 def index(request):
@@ -73,9 +73,13 @@ def books(request):
 
 # Testing/RnD and Debugging Views/Codes
 def test(request):
+    print(request)
+    print("Hello World")
+    books = BookMaster.objects.all()
+
     context = {"media": "abc.png"}
     val = 'this is test value'
-    return render(request, 'test.html', context)
+    return render(request, 'test.html', {'books': books})
 
 
 def add(request):

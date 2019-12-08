@@ -17,13 +17,18 @@
 
 <!--                Section Starts: Best Sellers-->
                 <div class="book-section">
-                <h1>Best Sellers</h1>
+                    <h1>Best Sellers</h1>
 
-                    {% for book in '123456' %}
+                    {% for book in books %}
 
                         <div class="book-container">
-                            <div class="book-tile">
-                                {{book}}.
+
+                            <img src="{{book.book_front_cover.url}}" alt="">
+                            <div class="book-tile" title="{{book.book_name}}">
+                                {{book.book_name}}
+                            </div>
+                            <div class="book-author" title="{{book.book_author}}">
+                                - {{ book.book_author }}
                             </div>
 
                             <div class="book-button">
@@ -37,19 +42,7 @@
 
                 </div>
 <!--                Section Ends: Best Sellers-->
-
-<!--                Section Starts:Most Rated Books-->
-                <div class="book-section">
-                <h1>Most Rated</h1>
-
-                    {% for novel in 'abcde' %}
-                        <div class="book-container">
-                            {{novel}}
-                        </div>
-                    {% endfor %}
-
-                </div>
-<!--                Section Ends: Most Rated Books-->
+                
 
             </section>
 

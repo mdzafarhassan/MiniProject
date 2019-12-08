@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.contrib.auth.models import auth, User
 from django.contrib import messages
 from .models import BookMaster
+from managers.bulk_uploader import zip_uploader
+from zipfile import ZipFile
 
 
 def index(request):
@@ -68,7 +70,13 @@ def register(request):
 
 
 def books(request):
-    return render(request, 'books_home.html')
+    books = BookMaster.objects.all()
+
+    return render(request, 'books_home.html', {'books': books})
+
+
+def bulk_upload(request):
+    return render(request, 'bulk_upload.html')
 
 
 # Testing/RnD and Debugging Views/Codes

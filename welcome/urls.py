@@ -9,10 +9,10 @@ urlpatterns = [
     path('login', views.login, name='Login'),
     path('logout', views.logout, name='Logout'),
     path('books', views.books, name='Books'),
+    path('bulk-upload', views.bulk_upload, name='bulk_upload'),
 
     # Testing/RnD and Debugging Urls/Codes
-    path('test', views.test, name='Test'),
-    path('add', views.add, name='Add'),
+    path('test', views.bulk_upload, name='Test'),
     path('result', views.result, name='Result'),
 ]
 

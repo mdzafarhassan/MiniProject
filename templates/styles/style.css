@@ -8,7 +8,7 @@ body{
 }
 
 .container{
-	width:90%;
+	width:95%;
 	margin:auto;
 	overflow:hidden;
 }
@@ -89,7 +89,7 @@ body{
 
 #sidebar{
 	float:right;
-	width:30%;
+	width:25%;
 	background: #333;
 	color:#fff;
 	padding:10px;
@@ -266,8 +266,8 @@ span.psw {
 }
 
 .book-section{
-	width:90%;
-	padding: 20px;
+	width:100%;
+	padding: 10px;
 	margin: 10px;
 	text-align: justify;
 }
@@ -276,13 +276,32 @@ span.psw {
     background-color: #cccccc;
     border-radius: 10px;
     display: inline-block;
-    padding: 10px;
-    margin: 10px;
+    padding: 5px;
+    margin: 5px;
+    width: 17%;
+    transition: .4s;
+}
+
+.book-container:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.book-container img{
+    width: 142px;
+    height: 250px;
 }
 
 .book-tile{
-    height-: 70%;
+    font-size: 12px;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 
+.book-author{
+    font-size: 10px
 }
 
 .book-button{

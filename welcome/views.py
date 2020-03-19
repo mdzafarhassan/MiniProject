@@ -70,9 +70,24 @@ def register(request):
 
 
 def books(request):
+    context = {}
     books = BookMaster.objects.all()
+    context['books'] = books
+    return render(request, 'books_home.html', context)
 
-    return render(request, 'books_home.html', {'books': books})
+
+def author(request, **kwargs):
+    context = {}
+    print(request, "  ::  ", kwargs)
+    author = kwargs.get('name', 0)
+    print(author)
+    if not author:
+        print('if')
+        return render(request, 'author_home.html', context)
+    else:
+        print('else')
+        context['author'] = author
+        return render(request, 'author_page.html', context)
 
 
 def bulk_upload(request):

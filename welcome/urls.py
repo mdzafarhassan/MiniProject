@@ -10,6 +10,8 @@ urlpatterns = [
     path('logout', views.logout, name='Logout'),
     path('books', views.books, name='Books'),
     path('bulk-upload', views.bulk_upload, name='bulk_upload'),
+    path('author', views.author, name='author'),
+    path('author/<name>', views.author, name='author_page'),
 
     # Testing/RnD and Debugging Urls/Codes
     path('test', views.bulk_upload, name='Test'),

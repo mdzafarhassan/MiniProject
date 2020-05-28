@@ -5,10 +5,29 @@ from django.contrib import messages
 from .models import BookMaster
 from managers.bulk_uploader import zip_uploader
 from zipfile import ZipFile
+import requests
+from django.http import JsonResponse
 
 
 def index(request):
     return render(request, 'index.html')
+
+
+def weather(request):
+    url = 'http://api.openweathermap.org/data/2.5/weather?lat=28.641942&lon=77.035342&appid=613a7f7cb40ea901b1008c5c9330dd4f&units=metric'
+
+    # insert time delay here
+
+    x = requests.get(url).json()
+
+    test = f'''<img src="http://openweathermap.org/img/w/{x['weather'][0]['icon']}.png" alt="image" />{x['main']['temp']}°
+        <ul>
+            <li><b>{x['name']}</b></li>
+            <li>{x['weather'][0]['description']}</li>
+            <li> Feels <b>{x['main']['feels_like']}°</b></li>
+        </ul>
+    '''
+    return HttpResponse(test)
 
 
 def login(request):
@@ -23,7 +42,7 @@ def login(request):
             return redirect('/')
         else:
             messages.info(request, 'Invalid credentials')
-            return redirect('login')
+            return redirect('Login')
 
     else:
         return redirect('/')
@@ -74,6 +93,14 @@ def books(request):
     books = BookMaster.objects.all()
     context['books'] = books
     return render(request, 'books_home.html', context)
+
+
+def add_book(request):
+    context = {}
+    if request.method == 'POST':
+        pass
+    else:
+        return render(request, 'add_book.html', context)
 
 
 def author(request, **kwargs):

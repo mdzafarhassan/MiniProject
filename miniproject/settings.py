@@ -128,3 +128,32 @@ STATICFILES_DIRS = (
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': './logs/log.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    },
+    # 'formatters': {
+    #     'console': {
+    #         'format': '%(name)-12s %(levelname)-8s %(message)s'
+    #     },
+    #     'file': {
+    #         'format': '%(asctime)s %(name)-12s %(levelname)-8s %(message)s'
+    #     }
+    # },
+}
+

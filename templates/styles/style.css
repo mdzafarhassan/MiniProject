@@ -1,157 +1,186 @@
-body{
-	background-color:#f4f4f4;
-	color:#555;
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:16px;
-	line-height:1.6em;
-	margin:0;
+body {
+  background-color: #f4f4f4;
+  color: #555;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.6em;
+  margin: 0;
 }
 
-.container{
-	width:95%;
-	margin:auto;
-	overflow:hidden;
+.container {
+  width: 95%;
+  margin: auto;
+  overflow: hidden;
 }
 
-#main-header{
-	background-color:coral;
-	color:#fff;
+.flex-display {
+  display: flex;
 }
 
-#navbar{
-	background-color:#333;
-	color:#fff;
-	margin: 0px;
-	padding:0;
+#main-header {
+  background-color: coral;
+  color: #fff;
 }
 
-#navbar ul{
-	padding:0;
-    margin: 0;
-	list-style: none;
+#main-header h1 {
+  width: inherit;
 }
 
-
-#navbar li{
-	display:inline;
+#weather-wiget {
+  /* min-width: 15%; */
+  align-items: center;
+  display: flex;
+  font-size: xx-large;
+  font-weight: bolder;
 }
 
-#navbar a{
-	color:#fff;
-	text-decoration: none;
-	font-size:18px;
-	padding-right:15px;
+#weather-wiget img {
+  padding: 0px 10px 0px 0px;
+  height: 100%;
 }
 
-#navbar button{
-    float: right;
-    background: #5FF2F7;
-    color: #C16509;
-    font-size: 18px;
-    border-radius: 60px;
-    padding: 2px 20px;
-
+#weather-wiget ul {
+  line-height: 0.5em;
+  padding: 0px 0px 0px 10px;
+  margin: 0px;
+  list-style: none;
 }
 
-#navbar button:hover{
-    float: right;
-    background-color: black;
-
+#weather-wiget ul li {
+  font-weight: normal;
+  font-size: 0.8rem;
+  clear: both;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
-
-#showcase{
-	background-image:url('../images/showcase.jpg');
-	background-position:center right;
-	margin-bottom:30px;
-	text-align: center;
+#navbar {
+  background-color: #333;
+  color: #fff;
+  margin: 0px;
+  padding: 0;
 }
 
-#showcase h1{
-	color:#fff;
-	font-size:30px;
-	line-height: 1.4em;
+#navbar ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
-#showcase h2{
-	color:#fff;
-	font-size:20px;
-	line-height: 1.2em;
-
+#navbar li {
+  display: inline;
 }
 
-#main{
-	float:left;
-	width:70%;
-	padding:0 30px;
-	box-sizing: border-box;
+#navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  padding-right: 15px;
 }
 
-#sidebar{
-	float:right;
-	width:25%;
-	background: #333;
-	color:#fff;
-	padding:10px;
-	box-sizing: border-box;
+#navbar button {
+  float: right;
+  background: #5ff2f7;
+  color: #c16509;
+  font-size: 18px;
+  border-radius: 60px;
+  padding: 2px 20px;
 }
 
-#main-footer{
-	background: #333;
-	color:#fff;
-	text-align: center;
-	padding:20px;
-	margin-top:40px;
+#navbar button:hover {
+  float: right;
+  background-color: black;
 }
 
-@media(max-width:600px){
-	#main{
-		width:100%;
-		float:none;
-	}
-
-	#sidebar{
-		width:100%;
-		float:none;
-	}
+#showcase {
+  background-image: url("../images/showcase.jpg");
+  background-position: center right;
+  margin-bottom: 30px;
+  text-align: center;
 }
 
-#registration-form{
-    width:60%;
-    background-color:grey;
-    margin-top: 25px;
-
+#showcase h1 {
+  color: #fff;
+  font-size: 30px;
+  line-height: 1.4em;
 }
 
-#registration-form input{
+#showcase h2 {
+  color: #fff;
+  font-size: 20px;
+  line-height: 1.2em;
+}
+
+#main {
+  float: left;
+  width: 70%;
+  padding: 0 30px;
+  box-sizing: border-box;
+}
+
+#sidebar {
+  float: right;
+  width: 25%;
+  background: #333;
+  color: #fff;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+#main-footer {
+  background: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+@media (max-width: 600px) {
+  #main {
     width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
+    float: none;
+  }
+
+  #sidebar {
+    width: 100%;
+    float: none;
+  }
 }
 
-#registration-form input[type=checkbox]{
-    width:auto;
+#registration-form {
+  width: 60%;
+  background-color: grey;
+  margin-top: 25px;
 }
 
-#registration-form input[type=submit]{
-    width: auto;
-    background-color:green;
-    color: white;
-    font-size: 16px;
-    border: 1px solid darkgray;
-    border-top-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    padding: 5px 20px;
-    float:right;
-
+#registration-form input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
 }
 
+#registration-form input[type="checkbox"] {
+  width: auto;
+}
+
+#registration-form input[type="submit"] {
+  width: auto;
+  background-color: green;
+  color: white;
+  font-size: 16px;
+  border: 1px solid darkgray;
+  border-top-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  padding: 5px 20px;
+  float: right;
+}
 
 /* Full-width input fields */
-input[type=text], input[type=password]{
+input[type="text"],
+input[type="password"] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -204,8 +233,8 @@ span.psw {
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
   padding-top: 0px;
 }
 
@@ -236,74 +265,81 @@ span.psw {
 /* Add Zoom Animation */
 .animate {
   -webkit-animation: animatezoom 0.6s;
-  animation: animatezoom 0.6s
+  animation: animatezoom 0.6s;
 }
 
 @-webkit-keyframes animatezoom {
-  from {-webkit-transform: scale(0)}
-  to {-webkit-transform: scale(1)}
+  from {
+    -webkit-transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+  }
 }
 
 @keyframes animatezoom {
-  from {transform: scale(0)}
-  to {transform: scale(1)}
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
 }
 
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
   span.psw {
-     display: block;
-     float: none;
+    display: block;
+    float: none;
   }
   .cancelbtn {
-     width: 100%;
+    width: 100%;
   }
 }
 
-.input-warnings{
-    font-color: red;
-    font-size: 16px;
+.input-warnings {
+  font-color: red;
+  font-size: 16px;
 }
 
-.book-section{
-	width:100%;
-	padding: 10px;
-	margin: 10px;
-	text-align: justify;
+.book-section {
+  width: 100%;
+  padding: 10px;
+  margin: 10px;
+  text-align: justify;
 }
 
-.book-container{
-    background-color: #cccccc;
-    border-radius: 10px;
-    display: inline-block;
-    padding: 5px;
-    margin: 5px;
-    width: 17%;
-    transition: .4s;
+.book-container {
+  background-color: #cccccc;
+  border-radius: 10px;
+  display: inline-block;
+  padding: 5px;
+  margin: 5px;
+  width: 17%;
+  transition: 0.4s;
 }
 
-.book-container:hover{
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+.book-container:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
-.book-container img{
-    width: 142px;
-    height: 250px;
+.book-container img {
+  width: 142px;
+  height: 250px;
 }
 
-.book-tile{
-    font-size: 12px;
-    display: block;
-    width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+.book-tile {
+  font-size: 12px;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
-.book-author{
-    font-size: 10px
+.book-author {
+  font-size: 10px;
 }
 
-.book-button{
-
+.book-button {
 }

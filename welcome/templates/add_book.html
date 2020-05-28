@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<form action="add" method="POST">
+  {% csrf_token %}
+
+  <div id="registration-form" class="container">
+    <div class="input-warnings">
+      {% if messages %} {% for message in messages %} {{ message }} {% endfor %}
+      {% endif %}
+    </div>
+    <h1>Registration Form</h1>
+    <input type="text" placeholder="Book Name" name="book_name" required />
+    <input type="text" placeholder="Author Name" name="author_name" required />
+    <input type="text" placeholder="Book Type" name="book_type" required />
+    <input type="text" placeholder="Book Genre" name="book_genre" required />
+    <input type="number" placeholder="Year" name="book_year" required />
+
+    <input type="submit" value="Add" />
+  </div>
+</form>
+
+{% endblock %}

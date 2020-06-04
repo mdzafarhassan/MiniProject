@@ -1,56 +1,43 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'base.html' %} {% load static %} {% block content %}
+<section id="showcase">
+  <div class="container">
+    <h1>Books Home</h1>
+    <h2>Browse -> Select Book -> Buy It -> Read Anywhere Anytime.</h2>
+  </div>
+</section>
 
+<div class="container">
+  <section id="main">
+    <!--                Section Starts: Best Sellers-->
+    <div class="book-section">
+      <h1>Best Sellers</h1>
 
+      {% for book in books %}
 
+      <div class="book-container">
+        <img src="{{book.book_front_cover.url}}" alt="" title="{{book.book_name}}" />
+        <div class="book-tile" title="{{book.book_name}}">
+          {{book.book_name}}
+        </div>
+        <div class="book-author" title="{{book.book_author}}">
+          - {{ book.book_author }}
+        </div>
 
-	{% block content %}
-		<section id="showcase">
-			<div class="container">
-				<h1> Books Home </h1>
-				<h2>Browse -> Select Book -> Buy It -> Read Anywhere Anytime.</h2>
-			</div>
-		</section>
+        <div class="book-button">
+          <button class="btnBookInfo">Info</button>
+          <button class="btnBookBuy">Buy</button>
+        </div>
+      </div>
 
-		<div class="container">
-			<section id="main">
+      {% endfor %}
+    </div>
+    <!--                Section Ends: Best Sellers-->
+  </section>
 
-<!--                Section Starts: Best Sellers-->
-                <div class="book-section">
-                    <h1>Best Sellers</h1>
+  <aside id="sidebar">
+    <h1>Best Offer</h1>
+    <p>This is the test para to check for text in offer section of Book Home page <br />Enjoy reading</p>
+  </aside>
+</div>
 
-                    {% for book in books %}
-
-                        <div class="book-container">
-
-                            <img src="{{book.book_front_cover.url}}" alt="">
-                            <div class="book-tile" title="{{book.book_name}}">
-                                {{book.book_name}}
-                            </div>
-                            <div class="book-author" title="{{book.book_author}}">
-                                - {{ book.book_author }}
-                            </div>
-
-                            <div class="book-button">
-                                <button class="btnBookInfo">Info</button>
-                                <button class="btnBookBuy">Buy</button>
-                            </div>
-
-                        </div>
-
-                    {% endfor %}
-
-                </div>
-<!--                Section Ends: Best Sellers-->
-                
-
-            </section>
-
-			<aside id="sidebar">
-                <h1>Best Offer</h1>
-                <p>This is the test para to check for text in offer section of Book Home page <br>Enjoy reading</p>
-			</aside>
-		</div>
-
-
-	{% endblock %}
+{% endblock %}

@@ -1,21 +1,41 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
-<form action="add" method="POST">
+
+<form enctype="multipart/form-data" action="add_book" method="POST">
   {% csrf_token %}
-
   <div id="registration-form" class="container">
-    <div class="input-warnings">
-      {% if messages %} {% for message in messages %} {{ message }} {% endfor %}
-      {% endif %}
-    </div>
-    <h1>Registration Form</h1>
-    <input type="text" placeholder="Book Name" name="book_name" required />
-    <input type="text" placeholder="Author Name" name="author_name" required />
-    <input type="text" placeholder="Book Type" name="book_type" required />
-    <input type="text" placeholder="Book Genre" name="book_genre" required />
-    <input type="number" placeholder="Year" name="book_year" required />
+    <h1>Add New Book</h1>
+    <label for="id_book_type">Book type:</label>
+    <input type="text" name="book_type" maxlength="50" required id="id_book_type" />
 
-    <input type="submit" value="Add" />
+    <label for="id_book_name">Book name:</label>
+    <input type="text" name="book_name" maxlength="150" required id="id_book_name" />
+
+    <label for="id_book_author">Book author:</label>
+    <input type="text" name="book_author" maxlength="100" required id="id_book_author" />
+
+    <label for="id_book_genre">Book genre:</label>
+    <input type="text" name="book_genre" maxlength="50" required id="id_book_genre" />
+
+    <label for="id_book_year">Book year:</label>
+    <input type="text" name="book_year" maxlength="4" required id="id_book_year" />
+
+    <label for="id_book_publications">Book publications:</label>
+    <input type="text" name="book_publications" maxlength="100" required id="id_book_publications" />
+
+    <label for="id_book_pages_count">Book pages count:</label>
+    <input type="number" name="book_pages_count" required id="id_book_pages_count" />
+
+    <label for="id_book_front_cover">Book front cover:</label>
+    <input type="file" name="book_front_cover" accept="image/*" required id="id_book_front_cover" />
+
+    <input type="submit" name="Add BooK" id="" />
   </div>
 </form>
+
+<!-- <script>
+  $(document).ready(function () {
+
+  });
+</script> -->
 
 {% endblock %}

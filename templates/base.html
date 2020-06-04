@@ -8,6 +8,8 @@
     </title>
     <link rel="stylesheet" type="text/css" href="{% static 'styles/style.css' %}" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js"></script>
   </head>
 
   <body>
@@ -44,8 +46,9 @@
           </li>
           {% if user.is_authenticated %}
           <a href="/logout"><button>Logout</button></a>
-          <li style="float: right; padding: 0px 10px;">
-            Hello, {{user.first_name}} {{user.last_name}}
+          <li id="login_info">
+            Hello,
+            <a href="/account">{{user.first_name}} {{user.last_name}}</a>
           </li>
           {% else %}
           <button id="btn_login" style="width: auto;">
@@ -91,6 +94,7 @@
       </form>
     </div>
 
+    {% if not user.is_authenticated %}
     <script>
       // Get the modal
       var modal = document.getElementById("id01");
@@ -108,7 +112,7 @@
         document.getElementById("username").focus();
       };
     </script>
-    {% endblock %} {% block content %} {% endblock %}
+    {% endif %} {% endblock %} {% block content %} {% endblock %}
 
     <footer id="main-footer">
       <p>

@@ -17,9 +17,16 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from accounts import views as accounts_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    path('register', accounts_views.register, name='Register'),
+    path('login', accounts_views.login, name='Login'),
+    path('logout', accounts_views.logout, name='Logout'),
+
+    # APPLICAIOTN BASED URLS
     path('', include('welcome.urls')),
     path('account', include('accounts.urls')),
 ]

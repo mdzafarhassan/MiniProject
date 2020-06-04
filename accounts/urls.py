@@ -4,7 +4,7 @@ from . import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
-    path('', views.account, name='Index'),
+    path('', views.account, name='account'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

@@ -1,12 +1,16 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth.models import auth, User
-from django.contrib import messages
 from .models import BookMaster
 from managers.bulk_uploader import zip_uploader
 from zipfile import ZipFile
 import requests
 from django.http import JsonResponse
+from datetime import datetime
+
+from .form import BookForm
+from .models import BookMaster
+
+from pprint import pprint
 
 
 def index(request):
@@ -14,78 +18,20 @@ def index(request):
 
 
 def weather(request):
-    url = 'http://api.openweathermap.org/data/2.5/weather?lat=28.641942&lon=77.035342&appid=613a7f7cb40ea901b1008c5c9330dd4f&units=metric'
-
-    # insert time delay here
+    # url = 'http://api.openweathermap.org/data/2.5/weather?lat=28.641942&lon=77.035342&appid=613a7f7cb40ea901b1008c5c9330dd4f&units=metric'
+    url = 'http://api.openweathermap.org/data/2.5/weather?q=Delhi,Delhi,India&appid=613a7f7cb40ea901b1008c5c9330dd4f&units=metric'
 
     x = requests.get(url).json()
 
-    test = f'''<img src="http://openweathermap.org/img/w/{x['weather'][0]['icon']}.png" alt="image" />{x['main']['temp']}°
+    test = f'''
+    <img src="http://openweathermap.org/img/w/{x['weather'][0]['icon']}.png" alt="image" />{x['main']['temp']}°C
         <ul>
             <li><b>{x['name']}</b></li>
             <li>{x['weather'][0]['description']}</li>
-            <li> Feels <b>{x['main']['feels_like']}°</b></li>
+            <li> Feels <b>{x['main']['feels_like']}°C</b></li>
         </ul>
     '''
     return HttpResponse(test)
-
-
-def login(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-
-        user = auth.authenticate(username=username, password=password)
-
-        if user is not None:
-            auth.login(request, user)
-            return redirect('/')
-        else:
-            messages.info(request, 'Invalid credentials')
-            return redirect('Login')
-
-    else:
-        return redirect('/')
-
-
-def logout(request):
-    auth.logout(request)
-    return redirect('/')
-
-
-def register(request):
-    if request.method == 'POST':
-
-        first_name = request.POST['f_name']
-        last_name = request.POST['l_name']
-        username = request.POST['username']
-        email = request.POST['email_id']
-        password = request.POST['password']
-        c_password = request.POST['c_password']
-
-        if password == c_password:
-            if User.objects.filter(username=username).exists():
-                messages.info(request, 'Username already in use')
-                return redirect('/register')
-            elif User.objects.filter(email=email).exists():
-                messages.info(request, 'Username already in use')
-                return redirect('/register')
-            else:
-                user = User.objects.create_user(
-                    first_name=first_name,
-                    last_name=last_name,
-                    username=username,
-                    email=email,
-                    password=password,
-                )
-                user.save()
-                print('Registration Completed')
-                return redirect('/')
-        else:
-            messages.info(request, 'Password does not match')
-            return redirect('/register')
-    else:
-        return render(request, 'register.html')
 
 
 def books(request):
@@ -97,10 +43,20 @@ def books(request):
 
 def add_book(request):
     context = {}
-    if request.method == 'POST':
-        pass
-    else:
-        return render(request, 'add_book.html', context)
+    form = BookForm(request.POST or None, request.FILES or None)
+    if form.is_valid():
+        instance = form.save(commit=False)
+
+        instance.created_date = str(datetime.now())[:19]
+        instance.created_by = request.user
+        instance.last_modified_date = str(datetime.now())[:19]
+        instance.last_modified_by = request.user
+
+        instance.save()
+        return redirect("/")
+
+    context['form'] = form
+    return render(request, 'add_book.html', context)
 
 
 def author(request, **kwargs):

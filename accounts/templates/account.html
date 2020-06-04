@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div class="container">
+  <h1>USER ACCOUNT PAGE</h1>
+  <div class="container">
+    <h2>Username : {{ user.username }}</h2>
+    Last Login : <b>{{last_login}}</b>
+    <div class="flex-display" id="account-user-info">
+      <form action="account" method="POST" id="account-detail-update">
+        {% csrf_token %}
+        <label for="fname" id="fn">First Name :</label>
+        <input type="text" name="f_name" value="{{user.first_name}}" id="fname" required /><br />
+
+        <label for="lname" id="ln">Last Name :</label>
+        <input type="text" name="l_name" value="{{user.last_name}}" required /><br />
+
+        <label for="email" id="mail">Email :</label>
+        <input type="email" name="email_id" value="{{user.email}}" required /><br />
+
+        <div class="input-information">
+          {% if messages %} {% for message in messages %} {{ message }} {% endfor %} {% endif %}
+        </div>
+        <input type="submit" value="  Update  " />
+      </form>
+      <img src="/media/profile_img/admin.jpg" alt="" />
+    </div>
+  </div>
+</div>
+
+{% endblock %}

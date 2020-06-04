@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<form action="register" method="POST">
+  {% csrf_token %}
+
+  <div id="registration-form" class="container">
+    <div class="input-warnings">
+      {% if messages %} {% for message in messages %} {{ message }} {% endfor %} {% endif %}
+    </div>
+    <h1>Registration Form</h1>
+    <input type="text" placeholder="First Name" name="f_name" required />
+    <input type="text" placeholder="Last Name" name="l_name" required />
+    <input type="text" placeholder="Username" name="username" required />
+    <input type="email" placeholder="Email Address" name="email_id" required />
+    <input type="password" placeholder="Password" name="password" required />
+    <input type="password" placeholder="confirm Password" name="c_password" required />
+
+    <input type="checkbox" name="tnc_agree" value="1" required /> Agree with
+    <a href="#">terms and conditions</a>
+    <input type="submit" value="  Register  " />
+  </div>
+</form>
+
+{% endblock %}

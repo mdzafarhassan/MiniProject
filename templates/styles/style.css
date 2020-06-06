@@ -13,6 +13,9 @@ body {
   overflow: hidden;
 }
 
+.main-context {
+  margin-top: 40px;
+}
 .flex-display {
   display: flex;
 }
@@ -69,13 +72,19 @@ body {
 }
 
 #navbar li {
+  color: #bababa;
   display: inline;
 }
 
 #navbar a {
-  color: #fff;
+  color: #bababa;
+  font-weight: bolder;
   text-decoration: none;
   padding-right: 15px;
+}
+
+#navbar a.is_active {
+  color: #fff;
 }
 
 #login_info {
@@ -152,10 +161,10 @@ body {
   }
 }
 
+/* Registration Form css starts here */
 #registration-form {
   width: 60%;
   background-color: grey;
-  margin-top: 25px;
 }
 
 #registration-form input {
@@ -182,7 +191,9 @@ body {
   padding: 5px 20px;
   float: right;
 }
+/* Registration Form css ends here */
 
+/* LOGIN CSS STARTS HERE */
 /* Full-width input fields */
 input[type="text"],
 input[type="password"] {
@@ -301,6 +312,7 @@ span.psw {
     width: 100%;
   }
 }
+/* LOGIN CSS ENDS HERE */
 
 .input-warnings {
   color: red;
@@ -395,3 +407,10 @@ span.psw {
 #account-detail-update input[type="submit"]:hover {
   background-color: blueviolet;
 }
+
+/* Add New Blog style starts here */
+.new-blog-main {
+  width: 75%;
+  background-color: #fff;
+}
+/* Add New Blog style ends here */

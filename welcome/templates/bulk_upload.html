@@ -1,16 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
 
-
-{% block content %}
-
-    <div class="container">
-
-        <form action="bulk-upload" method="POST">
-            {% csrf_token %}
-            <input type="file" name="uploaded_file">
-            <input type="submit" value=" Upload File ">
-        </form>
-
-    </div>
+<div class="main-context container">
+  <form action="bulk-upload" method="POST">
+    {% csrf_token %}
+    <input type="file" name="uploaded_file" />
+    <input type="submit" value=" Upload File " />
+  </form>
+</div>
 
 {% endblock %}

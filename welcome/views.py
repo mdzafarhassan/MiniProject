@@ -6,7 +6,6 @@ from zipfile import ZipFile
 import requests
 from django.http import JsonResponse
 from datetime import datetime
-
 from .form import BookForm
 from .models import BookMaster
 
@@ -14,7 +13,8 @@ from pprint import pprint
 
 
 def index(request):
-    return render(request, 'index.html')
+    context = {'home_page': True}
+    return render(request, 'index.html', context)
 
 
 def weather(request):
@@ -34,15 +34,15 @@ def weather(request):
     return HttpResponse(test)
 
 
-def books(request):
-    context = {}
+def book(request, **kwargs):
+    context = {'book_page': True}
     books = BookMaster.objects.all()
     context['books'] = books
     return render(request, 'books_home.html', context)
 
 
 def add_book(request):
-    context = {}
+    context = {'add_book_page': True}
     form = BookForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         instance = form.save(commit=False)
@@ -56,44 +56,35 @@ def add_book(request):
         return redirect("/")
 
     context['form'] = form
-    return render(request, 'add_book.html', context)
+    return render(request, 'book_add.html', context)
 
 
 def author(request, **kwargs):
-    context = {}
-    print(request, "  ::  ", kwargs)
-    author = kwargs.get('name', 0)
-    print(author)
-    if not author:
-        print('if')
-        return render(request, 'author_home.html', context)
-    else:
-        print('else')
-        context['author'] = author
+    context = {'author_page': True}
+    author = kwargs.get('name', None)
+    if author:
         return render(request, 'author_page.html', context)
+    else:
+        context['author'] = author
+        return render(request, 'author_home.html', context)
 
+
+def blog(request):
+    context = {'blog_page': True}
+
+    return render(request, 'blog_add.html', context)
+
+
+# Testing/RnD and Debugging Views/Codes
 
 def bulk_upload(request):
     return render(request, 'bulk_upload.html')
 
 
-# Testing/RnD and Debugging Views/Codes
 def test(request):
-    print(request)
-    print("Hello World")
+    context = {'test_page': True}
+
     books = BookMaster.objects.all()
+    context['books']: books
 
-    context = {"media": "abc.png"}
-    val = 'this is test value'
-    return render(request, 'test.html', {'books': books})
-
-
-def add(request):
-    return render(request, 'add.html')
-
-
-def result(request):
-    a = request.GET['num1']
-    b = request.GET['num2']
-    val = int(a) + int(b)
-    return render(request, 'result.html', {'result': val})
+    return render(request, 'test.html', context)

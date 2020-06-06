@@ -1,8 +1,8 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
-<form action="register" method="POST">
-  {% csrf_token %}
+<div class="main-context container" id="registration-form">
+  <form action="/register" method="POST">
+    {% csrf_token %}
 
-  <div id="registration-form" class="container">
     <div class="input-warnings">
       {% if messages %} {% for message in messages %} {{ message }} {% endfor %} {% endif %}
     </div>
@@ -17,7 +17,7 @@
     <input type="checkbox" name="tnc_agree" value="1" required /> Agree with
     <a href="#">terms and conditions</a>
     <input type="submit" value="  Register  " />
-  </div>
-</form>
+  </form>
+</div>
 
 {% endblock %}

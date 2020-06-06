@@ -1,8 +1,8 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 
-<form enctype="multipart/form-data" action="add_book" method="POST">
-  {% csrf_token %}
-  <div id="registration-form" class="container">
+<div class="main-context container" id="registration-form">
+  <form enctype="multipart/form-data" action="/add_book" method="POST">
+    {% csrf_token %}
     <h1>Add New Book</h1>
     <label for="id_book_type">Book type:</label>
     <input type="text" name="book_type" maxlength="50" required id="id_book_type" />
@@ -29,13 +29,7 @@
     <input type="file" name="book_front_cover" accept="image/*" required id="id_book_front_cover" />
 
     <input type="submit" name="Add BooK" id="" />
-  </div>
-</form>
-
-<!-- <script>
-  $(document).ready(function () {
-
-  });
-</script> -->
+  </form>
+</div>
 
 {% endblock %}

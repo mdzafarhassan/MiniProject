@@ -4,18 +4,17 @@ from . import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
-    path('', views.index, name='Index'),
-    path('books', views.books, name='Books'),
+    path('', views.index, name='home'),
+    path('books', views.book, name='books'),
     path('add_book', views.add_book, name='add_book'),
-    path('bulk-upload', views.bulk_upload, name='bulk_upload'),
-    path('author', views.author, name='author'),
+    path('authors', views.author, name='authors'),
     path('author/<name>', views.author, name='author_page'),
+    path('blogs', views.blog, name="blogs"),
     path('weather', views.weather, name='weather'),
+    path('bulk-upload', views.bulk_upload, name='bulk_upload'),
 
     # Testing/RnD and Debugging Urls/Codes
-    path('test', views.bulk_upload, name='Test'),
-    path('result', views.result, name='Result'),
-    path('add', views.add, name='add'),
+    path('test', views.test, name='Test'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

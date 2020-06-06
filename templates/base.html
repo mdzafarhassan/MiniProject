@@ -24,31 +24,33 @@
       <div class="container">
         <ul>
           <li>
-            <a href="/">Home</a>
+            <a href="/" {% if home_page %} class="is_active" {% endif %}>Home</a>
           </li>
           <li>
-            <a href="books">Browse Books</a>
+            <a href="/books" {% if book_page %} class="is_active" {% endif %}>Books</a>
           </li>
           <li>
-            <a href="">About Us</a>
+            <a href="/authors" {% if author_page %} class="is_active" {% endif %}>Authors</a>
           </li>
           <li>
-            <a href="">Career</a>
+            <a href="/blogs" {% if blog_page %} class="is_active" {% endif %}>Blogs</a>
           </li>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <li></li>
+          {% if request.session.is_admin %}
           <li>
-            <a href="add_book">Add New Book</a>
+            <a href="/add_book" {% if add_book_page %} class="is_active" {% endif %}>Add Book</a>
           </li>
+          {% endif %}
           <li>
-            <a href="test">Test</a>
+            <a href="/author/hello" {% if test_page %} class="is_active" {% endif %}>Test</a>
           </li>
-          <li>
-            <a href="add">Add</a>
-          </li>
+
           {% if user.is_authenticated %}
           <a href="/logout"><button>Logout</button></a>
           <li id="login_info">
             Hello,
-            <a href="/account">{{user.first_name}} {{user.last_name}}</a>
+            <a href="/account" {% if account_page %} class="is_active" {% endif %}>{{user.first_name}} {{user.last_name}}</a>
           </li>
           {% else %}
           <button id="btn_login" style="width: auto;">
@@ -59,9 +61,9 @@
         </ul>
       </div>
     </nav>
-
+    {% if not user.is_authenticated %}
     <div id="id01" class="modal">
-      <form class="modal-content animate" action="login" method="POST">
+      <form class="modal-content animate" action="/login" method="POST">
         {% csrf_token %}
         <div class="imgcontainer">
           <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
@@ -94,7 +96,6 @@
       </form>
     </div>
 
-    {% if not user.is_authenticated %}
     <script>
       // Get the modal
       var modal = document.getElementById("id01");
@@ -129,7 +130,7 @@
 
   function weather() {
     $.ajax({
-      url: "weather",
+      url: "/weather",
       dataType: "html",
       success: function (result) {
         $("#weather-wiget").empty();

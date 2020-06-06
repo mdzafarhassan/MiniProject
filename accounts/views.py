@@ -9,7 +9,7 @@ from datetime import datetime
 
 
 def account(request):
-    context = {}
+    context = {"account_page": True}
     if request.method == "POST":
         username = request.user
         user = User.objects.get(username=username)
@@ -37,6 +37,11 @@ def login(request):
             request.session['last_login'] = str(lastlogin)
 
             auth.login(request, user)
+            user_name = str(user)
+            if user_name in ['admin', 'jags']:
+                request.session['is_admin'] = True
+            else:
+                request.session['is_admin'] = False
             return redirect('/')
         else:
             messages.info(request, 'Invalid credentials')

@@ -62,44 +62,36 @@
       </div>
     </nav>
     {% if not user.is_authenticated %}
-    <div id="id01" class="modal">
-      <form class="modal-content animate" action="/login" method="POST">
+    <div id="login-popup" class="modal">
+      <form action="/login" class="modal-content animate" method="POST">
         {% csrf_token %}
-        <div class="imgcontainer">
-          <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+
+        <div class="login-top">
+          <span onclick="document.getElementById('login-popup').style.display='none'" class="close" title="Close Login">&times;</span>
           <img src="{% static 'images/img_avatar2.png' %}" alt="Avatar" class="avatar" />
         </div>
-
-        <div class="container">
+        <div class="login-main">
           <label for="usrn"><b>Username</b></label>
           <input id="username" type="text" placeholder="Enter Username" name="username" required />
 
           <label for="pswd"><b>Password</b></label>
           <input type="password" placeholder="Enter Password" name="password" required />
 
-          <button type="submit">
-            Login
-          </button>
+          <input type="submit" value="Login" />
 
-          <label>
-            <input type="checkbox" checked="checked" name="remember" />
-            Remember me
-          </label>
+          <label><input type="checkbox" checked="checked" />Remember me</label>
         </div>
-
-        <div class="container" style="background-color: #f1f1f1;">
-          <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">
+        <div class="login-bottom">
+          <button type="button" onclick="document.getElementById('login-popup').style.display='none'" class="cancelbtn">
             Cancel
           </button>
           <span class="psw">Forgot <a href="#">password?</a></span>
         </div>
       </form>
     </div>
-
     <script>
       // Get the modal
-      var modal = document.getElementById("id01");
-
+      var modal = document.getElementById("login-popup");
       // When the user clicks anywhere outside of the modal, close it
       window.onclick = function (event) {
         if (event.target == modal) {

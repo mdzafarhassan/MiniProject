@@ -164,6 +164,20 @@ body {
 }
 */
 
+.page-heading {
+  display: inline-flex;
+  width: 100%;
+}
+
+.page-heading label {
+  font-size: 35px;
+  font-weight: bold;
+  margin: auto;
+}
+
+.page-heading .page-side-menu a {
+  padding: 0 20px;
+}
 /* LoginPopup CSS Starts here */
 
 .modal {
@@ -290,38 +304,40 @@ body {
 /*  LoginPopup CSS Ends here*/
 
 /* Registration Form css starts here */
-#registration-form {
-  width: 60%;
+.entry-form {
+  width: 55%;
   background-color: grey;
+  margin: auto;
+  padding: 30px 60px;
 }
-#registration-form input {
+
+.entry-form input {
   width: 100%;
-  padding: 12px 20px;
+  padding: 5px 20px;
   margin: 8px 0;
   display: inline-block;
   box-sizing: border-box;
+  font-size: 20px;
   border: 1px solid #ccc;
 }
 
-#registration-form input[type="checkbox"] {
+.entry-form input[type="submit"] {
+  margin-top: 35px;
+  background: #32b121;
+  color: #fff;
+  border: 1px solid #32b121;
+}
+.entry-form input[type="file"] {
+  font-size: 16px;
+  background: #fff;
+}
+
+.entry-form input[type="checkbox"] {
   width: auto;
 }
 
-#registration-form input[type="submit"] {
-  width: auto;
-  background-color: green;
-  color: white;
-  font-size: 16px;
-  border: 1px solid darkgray;
-  border-top-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  padding: 5px 20px;
-  float: right;
-}
-#registration-form input[type="file"] {
-  padding: 5px;
-  font-size: 20px;
-  background: #fff;
+#registration-form {
+  width: 50%;
 }
 
 /* Registration Form css ends here */
@@ -381,6 +397,21 @@ body {
 
 .book-button button {
   width: 48%;
+  height: 31px;
+  font-size: 17px;
+  padding: 0px;
+  margin: 15px 0 5px 0px;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0px -2px 14px 0px;
+  font-family: serif;
+}
+
+.book-button button.btnBookInfo {
+  background-color: #68b0ff;
+}
+.book-button button.btnBookBuy {
+  background-color: #fda853;
 }
 
 #account-user-info img {

@@ -41,8 +41,25 @@ def book(request, **kwargs):
     return render(request, 'books_home.html', context)
 
 
-def add_book(request):
+def add_book(request, **kwargs):
     context = {'add_book_page': True}
+    action = kwargs.get('action')
+    if action:
+        filter = {}
+        if action == 'delete':
+            context['delete'] = True
+            context['page_heading'] = 'Delete Book'
+            filter['is_active'] = True
+        if action == 'restore':
+            context['restore'] = True
+            context['page_heading'] = 'Restore Book'
+            filter['is_active'] = False
+        books = BookMaster.objects.all()
+        context['books'] = books
+        return render(request, 'book_add.html', context)
+
+    context['add'] = True
+    context['page_heading'] = 'Add New Book'
     form = BookForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         instance = form.save(commit=False)

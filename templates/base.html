@@ -61,7 +61,7 @@
         </ul>
       </div>
     </nav>
-    {% if not user.is_authenticated %}
+    {% endblock %} {% if not user.is_authenticated %}
     <div id="login-popup" class="modal">
       <form action="/login" class="modal-content animate" method="POST">
         {% csrf_token %}
@@ -105,7 +105,9 @@
         document.getElementById("username").focus();
       };
     </script>
-    {% endif %} {% endblock %} {% block content %} {% endblock %}
+    {% endif %} {% block content %}
+    <h1>THIS IS BASE PAGE CONTENT</h1>
+    {% endblock %}
 
     <footer id="main-footer">
       <p>

@@ -1,9 +1,21 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 
-<div class="main-context container" id="registration-form">
-  <form enctype="multipart/form-data" action="/add_book" method="POST">
+<div class="main-context container">
+  <div class="page-heading">
+    <label>{{page_heading}}</label>
+    <div class="page-side-menu">
+      {% if not add %}
+      <a href="/add_book">Add New Book</a>
+      {% endif %} {% if not delete %}
+      <a href="/add_book/delete">Delete Book</a>
+      {% endif %} {% if not restore %}
+      <a href="/add_book/restore">Restore Book</a>
+      {% endif %}
+    </div>
+  </div>
+  {% if add %}<!-- ADD New Book-->
+  <form enctype="multipart/form-data" action="/add_book" method="POST" class="entry-form">
     {% csrf_token %}
-    <h1>Add New Book</h1>
     <label for="id_book_type">Book type:</label>
     <input type="text" name="book_type" maxlength="50" required id="id_book_type" />
 
@@ -28,8 +40,10 @@
     <label for="id_book_front_cover">Book front cover:</label>
     <input type="file" name="book_front_cover" accept="image/*" required id="id_book_front_cover" />
 
-    <input type="submit" name="Add BooK" id="" />
+    <input type="submit" name="Add BooK" />
   </form>
+  {% else %}<!-- DELETE/RESTORE Old Books-->
+  {% endif %}
 </div>
 
 {% endblock %}

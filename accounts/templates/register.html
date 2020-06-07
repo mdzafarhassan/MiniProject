@@ -1,12 +1,15 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
-<div class="main-context container" id="registration-form">
-  <form action="/register" method="POST">
+<div class="main-context container">
+  <div class="page-heading">
+    <label>Registration Form</label>
+  </div>
+  <form action="/register" method="POST" class="entry-form" id="registration-form">
     {% csrf_token %}
 
     <div class="input-warnings">
       {% if messages %} {% for message in messages %} {{ message }} {% endfor %} {% endif %}
     </div>
-    <h1>Registration Form</h1>
+
     <input type="text" placeholder="First Name" name="f_name" required />
     <input type="text" placeholder="Last Name" name="l_name" required />
     <input type="text" placeholder="Username" name="username" required />

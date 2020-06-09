@@ -1,6 +1,33 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
+<section id="showcase">
+  <div class="container">
+    <h1>Blogs Home</h1>
+    <h2>Create Blog posts and let everyone knowsyour intresting story or Read some ofthe story of other's life .</h2>
+  </div>
+</section>
 <div class="main-context container">
-  Browse All Blogs
+  <section id="main">
+    <!--                Section Starts: Best Sellers-->
+    <div class="blog-section">
+      {% for post in posts %}
+      <div class="post-container">
+        <img class="post-img-top" src="/media/IMG-20200525-WA0000.jpg" alt="Card image cap" />
+        <div class="post-body">
+          <h5 class="post-title">{{post.title}}</h5>
+          <p class="post-content">{{post.content}}</p>
+          <!-- <p class="post-content">{{post.content | slice:":151" }}{% if post.content|length > 115 %}...{% endif %}</p> -->
+          <a href="#" class="btn">Read More</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <!--                Section Ends: Best Sellers-->
+  </section>
+
+  <aside id="sidebar">
+    <h1>Trending</h1>
+    <p>This is the test part will be used for side display of trending blog posts <br />Enjoy reading</p>
+  </aside>
 </div>
 
 {% endblock %}

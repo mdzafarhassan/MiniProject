@@ -33,11 +33,14 @@
             <a href="/authors" {% if author_page %} class="is_active" {% endif %}>Authors</a>
           </li>
           <li>
-            <a href="/blogs" {% if blog_page %} class="is_active" {% endif %}>Blogs</a>
+            <a href="/blogs" {% if blogs_home %} class="is_active" {% endif %}>Blogs</a>
           </li>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <li></li>
           {% if request.session.is_admin %}
+          <li>
+            <a href="/blog_add" {% if blog_page %} class="is_active" {% endif %}>Add Blog</a>
+          </li>
           <li>
             <a href="/add_book" {% if add_book_page %} class="is_active" {% endif %}>Add Book</a>
           </li>

@@ -1,5 +1,5 @@
 from django import forms
-from .models import BookMaster
+from .models import BookMaster, BlogPost
 
 
 class BookForm(forms.ModelForm):
@@ -14,4 +14,12 @@ class BookForm(forms.ModelForm):
             "book_publications",
             "book_pages_count",
             "book_front_cover",
+        ]
+
+
+class BlogPostForm(forms.ModelForm):
+    class Meta:
+        model = BlogPost
+        fields = [
+            "title", "category", "tags", "content", "privacy_level"
         ]

@@ -10,7 +10,8 @@ urlpatterns = [
     path('add_book/<action>', views.add_book, name='add_book_action'),
     path('authors', views.author, name='authors'),
     path('author/<name>', views.author, name='author_page'),
-    path('blogs', views.blog, name="blogs"),
+    path('blogs', views.blogs, name='blogs'),
+    path('blog_add', views.blog_add, name="add_blog"),
     path('weather', views.weather, name='weather'),
     path('bulk-upload', views.bulk_upload, name='bulk_upload'),
 

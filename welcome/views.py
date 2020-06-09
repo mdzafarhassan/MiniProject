@@ -1,13 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import BookMaster
+from .models import BookMaster, BlogPost
 from managers.bulk_uploader import zip_uploader
 from zipfile import ZipFile
 import requests
 from django.http import JsonResponse
 from datetime import datetime
-from .form import BookForm
-from .models import BookMaster
+from .form import BookForm, BlogPostForm
 
 from pprint import pprint
 
@@ -36,7 +35,7 @@ def weather(request):
 
 def book(request, **kwargs):
     context = {'book_page': True}
-    books = BookMaster.objects.all()
+    books = BookMaster.objects.filter(is_active=True).all()
     context['books'] = books
     return render(request, 'books_home.html', context)
 
@@ -54,8 +53,9 @@ def add_book(request, **kwargs):
             context['restore'] = True
             context['page_heading'] = 'Restore Book'
             filter['is_active'] = False
-        books = BookMaster.objects.all()
+        books = BookMaster.objects.filter(**filter).all()
         context['books'] = books
+        print(books)
         return render(request, 'book_add.html', context)
 
     context['add'] = True
@@ -64,6 +64,7 @@ def add_book(request, **kwargs):
     if form.is_valid():
         instance = form.save(commit=False)
 
+        instance.is_active = True
         instance.created_date = str(datetime.now())[:19]
         instance.created_by = request.user
         instance.last_modified_date = str(datetime.now())[:19]
@@ -86,9 +87,28 @@ def author(request, **kwargs):
         return render(request, 'author_home.html', context)
 
 
-def blog(request):
-    context = {'blog_page': True}
+def blogs(request):
+    context = {'blogs_home': True}
+    posts = BlogPost.objects.all()
+    context['posts'] = posts
+    return render(request, 'blog_home.html', context)
 
+
+def blog_add(request):
+    context = {'blog_page': True}
+    form = BlogPostForm(request.POST or None)
+    if form.is_valid():
+        instance = form.save(commit=False)
+
+        instance.is_active = True
+        instance.created_by = request.user
+        instance.created_date = str(datetime.now())[:19]
+        instance.last_modified_date = str(datetime.now())[:19]
+
+        instance.save()
+        return redirect("/")
+
+    context['form'] = form
     return render(request, 'blog_add.html', context)
 
 

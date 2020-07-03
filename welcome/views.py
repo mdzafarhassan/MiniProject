@@ -7,11 +7,11 @@ import requests
 from django.http import JsonResponse
 from datetime import datetime
 from .form import BookForm, BlogPostForm
-
-from pprint import pprint
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
+    print("  >> HOME")
     context = {'home_page': True}
     return render(request, 'index.html', context)
 
@@ -35,7 +35,7 @@ def weather(request):
 
 def book(request, **kwargs):
     context = {'book_page': True}
-    books = BookMaster.objects.filter(is_active=True).all()
+    books = BookMaster.objectstem.all()
     context['books'] = books
     return render(request, 'books_home.html', context)
 
@@ -55,7 +55,6 @@ def add_book(request, **kwargs):
             filter['is_active'] = False
         books = BookMaster.objects.filter(**filter).all()
         context['books'] = books
-        print(books)
         return render(request, 'book_add.html', context)
 
     context['add'] = True
@@ -119,9 +118,19 @@ def bulk_upload(request):
 
 
 def test(request):
+    from pprint import pprint
     context = {'test_page': True}
 
-    books = BookMaster.objects.all()
-    context['books']: books
+    books = list(BookMaster.objects.filter(book_type='Novel').annotate(test='book_genre').values(
+        'book_name', 'book_type', 'book_genre', 'book_pages_count'))
 
+    context['books'] = books
+    pprint(context)
+
+    return render(request, 'test.html', context)
+
+
+def test2(request):
+    context={}
+    print("this is test funtion from vi")
     return render(request, 'test.html', context)

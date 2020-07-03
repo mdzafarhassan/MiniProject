@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div class="main-context container">
+  <form action="" class="modal-content animate" id="login-form2" method="POST">
+    {% csrf_token %}
+
+    <div class="login-top">
+      <span onclick="document.getElementById('login-popup').style.display='none'" class="close" title="Close Login">&times;</span>
+      <img src="{% static 'images/img_avatar2.png' %}" alt="Avatar" class="avatar" />
+    </div>
+    <div class="login-main">
+      <label for="usrn"><b>Username</b></label>
+      <input id="username" type="text" placeholder="Enter Username" name="username" autofocus required />
+
+      <label for="pswd"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" required />
+
+      <input type="submit" value="Login" />
+      <div class="input-error" id="message-area">
+        {% if messages %} {% for message in messages %} {{ message }} {% endfor %} {% endif %}
+      </div>
+      <label><input type="checkbox" checked="checked" />Remember me</label>
+    </div>
+    <div class="login-bottom">
+      <button type="button" onclick="document.getElementById('login-popup').style.display='none'" class="cancelbtn">
+        Cancel
+      </button>
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+  </form>
+</div>
+
+<script>
+  $("#login-form2").submit(function (event) {
+    var pageURL = $(location).attr("href");
+    $("<input />").attr("type", "hidden").attr("name", "next").attr("value", pageURL).appendTo("#login-form");
+    return true;
+  });
+</script>
+
+{% endblock %}

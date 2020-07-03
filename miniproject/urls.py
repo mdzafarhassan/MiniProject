@@ -19,9 +19,12 @@ from django.contrib import admin
 from django.urls import path, include
 from accounts import views as accounts_views
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 
+    # path('admin/', admin.site.urls),
+    path('not_authorized/', accounts_views.not_authorized, name='not_authorized'),
     path('register', accounts_views.register, name='Register'),
     path('login', accounts_views.login, name='Login'),
     path('logout', accounts_views.logout, name='Logout'),

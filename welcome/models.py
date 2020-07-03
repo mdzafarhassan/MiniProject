@@ -58,7 +58,7 @@ class BlogPost(models.Model):
         db_table = "blog_post"
 
     def __str__(self):
-        return self.content
+        return self.title
 
     @property
     def author(self):

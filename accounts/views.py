@@ -4,6 +4,7 @@ from django.contrib.auth.models import auth, User
 from django.contrib import messages
 import pytz
 from datetime import datetime
+import re
 
 # Create your views here.
 
@@ -24,11 +25,13 @@ def account(request):
 
 
 def login(request):
+    if request.user.is_authenticated:
+        return redirect('/')
     if request.method == 'POST':
+        redirect_url = request.GET.get('next', '/')
 
         username = request.POST['username']
         password = request.POST['password']
-
         user = auth.authenticate(username=username, password=password)
         if user is not None:
             lastlogin = user.last_login
@@ -37,26 +40,24 @@ def login(request):
             request.session['last_login'] = str(lastlogin)
 
             auth.login(request, user)
-            user_name = str(user)
-            if user_name in ['admin', 'jags']:
-                request.session['is_admin'] = True
-            else:
-                request.session['is_admin'] = False
-            return redirect('/')
+            return redirect(redirect_url)
         else:
             messages.info(request, 'Invalid credentials')
-            return redirect('Login')
+            return redirect(request.url_info)
 
     else:
-        return redirect('/')
+        return render(request, 'login.html')
 
 
 def logout(request):
     auth.logout(request)
-    return redirect('/')
+    return redirect(request.META.get('HTTP_REFERER'))
 
 
 def register(request):
+    if request.user.is_authenticated:
+        return redirect('/')
+
     if request.method == 'POST':
 
         first_name = request.POST['f_name']
@@ -88,3 +89,8 @@ def register(request):
             return redirect('/register')
     else:
         return render(request, 'register.html')
+
+
+def not_authorized(request):
+    context = {}
+    return render(request, 'not_authorized.html', context)

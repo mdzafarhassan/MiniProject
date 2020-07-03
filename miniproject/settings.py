@@ -49,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'miniproject.custom_middleware.BasicMiddleware',
 ]
 
 ROOT_URLCONF = 'miniproject.urls'
@@ -123,7 +124,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'templates'),
+    os.path.join(BASE_DIR, 'static'),
 )
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -158,3 +159,19 @@ LOGGING = {
 }
 
 PROFILE_IMG_DIR = os.path.join(BASE_DIR, 'profile_img')
+
+
+LOGIN_URL = '/login'
+
+STAFF_URL = [
+    'add_books', 'test'
+]
+SUPERADMIN_URL = [
+    'admin/'
+]
+
+LOGIN_EXEMPT_URL = []
+LOGIN_REQUIRED_URL = STAFF_URL+SUPERADMIN_URL+[
+    'account',
+    'blog_add'
+]

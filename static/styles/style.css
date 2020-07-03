@@ -342,13 +342,23 @@ body {
 
 /* Registration Form css ends here */
 
-.input-warnings {
+.input-error {
   color: red;
+  font-size: 16px;
+}
+
+.input-warnings {
+  color: #ff7300;
   font-size: 16px;
 }
 
 .input-information {
   color: blue;
+  font-size: 16px;
+}
+
+.input-sucess {
+  color: #008000;
   font-size: 16px;
 }
 
@@ -410,45 +420,116 @@ body {
 .book-button button.btnBookInfo {
   background-color: #68b0ff;
 }
+
 .book-button button.btnBookBuy {
   background-color: #fda853;
 }
 
-#account-user-info img {
-  padding: 0px 150px;
-  max-height: 150px;
+#account-user-info .img-section {
+  position: relative;
+  width: 15%;
 }
+
+#account-user-info .img-section img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+#account-user-info .img-section .overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color: #008cba;
+}
+
+#account-user-info .img-section:hover .overlay {
+  opacity: 0.5;
+}
+
+#account-user-info .img-section input {
+  visibility: hidden;
+}
+
+#account-user-info .img-section label {
+  opacity: 1;
+  background-color: #ccc;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* #account-user-info .img-section input[type="file"] {
+  visibility: hidden;
+} */
 
 #account-detail-update {
   text-align: left;
   font-size: 18px;
   font-weight: bold;
+  width: 50%;
 }
 
 #account-detail-update input {
-  background-color: #ffffff;
+  color: #000;
   font-size: 20px;
   width: 500px;
   margin: 8px 0;
   padding: 2px 10px;
   display: inline-block;
-  border: 1px solid #ccc;
   box-sizing: border-box;
+  background-color: inherit;
+  border: none;
 }
 
-#account-detail-update input[type="submit"] {
-  width: auto;
-  background-color: green;
+#account-detail-update input.edit {
+  color: #333;
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  /*
+  font-size: 20px;
+  width: 500px;
+  margin: 8px 0;
+  padding: 2px 10px;
+  display: inline-block;
+  box-sizing: border-box; */
+}
+
+#account-detail-update button {
+  margin-top: 2rem;
   color: white;
   font-size: 16px;
-  border: 1px solid darkgray;
   border-top-left-radius: 15px;
   border-bottom-right-radius: 15px;
   padding: 5px 20px;
 }
 
-#account-detail-update input[type="submit"]:hover {
-  background-color: blueviolet;
+#account-detail-update button:hover {
+  box-shadow: none;
+}
+
+#account-detail-update button#btn_edit {
+  background-color: #0000ff;
+}
+
+#account-detail-update button#btn_cancel {
+  margin-right: 5rem;
+  background-color: #ff0000;
+}
+
+#account-detail-update button#btn_submit {
+  background-color: #00ff00;
 }
 
 /* Add New Blog style starts here */
@@ -537,3 +618,7 @@ body {
 }
 
 /* Blog CSS ends here*/
+
+/* Account Dashboard CSS Starts here */
+
+/* Account Dashboard CSS Ends here */

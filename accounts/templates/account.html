@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
+{% extends 'base.html' %} {% block content %}
 <div class="container">
   <h1>USER ACCOUNT PAGE</h1>
   <div class="container">
@@ -8,22 +8,71 @@
       <form action="account" method="POST" id="account-detail-update">
         {% csrf_token %}
         <label for="fname" id="fn">First Name :</label>
-        <input type="text" name="f_name" value="{{user.first_name}}" id="fname" required /><br />
+        <input
+          type="text"
+          name="f_name"
+          value="{{user.first_name}}"
+          id="fname"
+          disabled
+          required
+        /><br />
 
         <label for="lname" id="ln">Last Name :</label>
-        <input type="text" name="l_name" value="{{user.last_name}}" required /><br />
+        <input
+          type="text"
+          name="l_name"
+          value="{{user.last_name}}"
+          disabled
+          required
+        /><br />
 
         <label for="email" id="mail">Email :</label>
-        <input type="email" name="email_id" value="{{user.email}}" required /><br />
+        <input
+          type="email"
+          name="email_id"
+          value="{{user.email}}"
+          disabled
+          required
+        /><br />
 
-        <div class="input-information">
-          {% if messages %} {% for message in messages %} {{ message }} {% endfor %} {% endif %}
+        <button type="button" id="btn_edit">Edit</button>
+        <button type="reset" id="btn_cancel" hidden>Cancel</button>
+        <button type="submit" id="btn_submit" hidden>Save</button>
+        <div class="input-information" id="message-area">
+          {% if messages %} {% for message in messages %} {{ message }} {%
+          endfor %} {% endif %}
         </div>
-        <input type="submit" value="  Update  " />
       </form>
-      <img src="/media/profile_img/admin.jpg" alt="" />
+      <div class="img-section">
+        <img src="{{static}}accounts/images/{{path}}.jpg" alt="" />
+        <div class="overlay">
+          <label for="profile-img">Upload Image</label>
+          <input id="profile-img" type="file" />
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
+<script>
+  $(document).ready(function () {
+    $("#message-area").hide().delay(5000).fadeOut(500);
+  });
+
+  $("#btn_edit").click(function () {
+    $("input").prop("disabled", false);
+    $("input").addClass("edit");
+
+    $("#btn_edit").hide();
+    $("#btn_cancel").show();
+    $("#btn_submit").show();
+  });
+  $("#btn_cancel").click(function () {
+    $("input").removeClass("edit");
+
+    $("#btn_edit").show();
+    $("#btn_cancel").hide();
+    $("#btn_submit").hide();
+  });
+</script>
 {% endblock %}

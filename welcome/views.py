@@ -35,7 +35,7 @@ def weather(request):
 
 def book(request, **kwargs):
     context = {'book_page': True}
-    books = BookMaster.objectstem.all()
+    books = BookMaster.objects.filter(is_active=True).all()
     context['books'] = books
     return render(request, 'books_home.html', context)
 
@@ -131,6 +131,6 @@ def test(request):
 
 
 def test2(request):
-    context={}
+    context = {}
     print("this is test funtion from vi")
     return render(request, 'test.html', context)

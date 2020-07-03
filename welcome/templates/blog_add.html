@@ -2,15 +2,9 @@
 <div class="main-context container">
   <div class="blog-main">
     <form action="/blog_add" method="POST">
-      {% csrf_token %} {% for field in form %} {{field}} {% endfor %}
+      {% csrf_token %} {% for field in form %} {{field.name}}{{field}} <br />{% endfor %}
       <input type="submit" value="Post" />
     </form>
-    <!-- <input type="text" name="blog_title" id="" placeholder="Title" />
-    <input type="date" name="blog_date" id="" />
-    <input type="text" name="blog_category" id="" placeholder="Category" />
-    <textarea name="blog_content" rows="10" cols="30" placeholder="Write your interesting story..."></textarea>
-    <input type="text" name="blog_tags" id="" placeholder="Tags" />
-    <input type="submit" value="Save" /> -->
   </div>
 </div>
 

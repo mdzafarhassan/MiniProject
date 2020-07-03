@@ -540,6 +540,19 @@ body {
 /* Add New Blog style ends here */
 
 /* Blog CSS starts here*/
+.blog-top-button {
+  padding: 1em 0;
+}
+
+.blog-top-button button.add-new {
+  padding: 0.5em;
+  font-size: 1.25em;
+  background: #008cba;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+}
+
 .blog-section {
   border: solid #f7f7f9;
   border-width: 0.2rem;

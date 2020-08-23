@@ -43,7 +43,25 @@
     <input type="submit" name="Add BooK" />
   </form>
   {% else %}<!-- DELETE/RESTORE Old Books-->
-  {% endif %}
+  {% for book in books %}
+  <div class="book-container book-container-action">
+    <img src="{{book.book_front_cover.url}}" alt="" title="{{book.book_name}}" />
+    <div class="book-tile" title="{{book.book_name}}">
+      {{book.book_name}}
+    </div>
+    <div class="book-author" title="{{book.book_author}}">
+      - {{ book.book_author }}
+    </div>
+
+    <div class="book-button">
+      <form enctype="multipart/form-data" method="POST" action="/add_book/{% if delete %}delete{% elif restore %}restore{% endif %}">
+        {% csrf_token %}
+        <input type="hidden" name="book_id" value="{{book.id}}" />
+        <button class="btn{% if delete %}Delete{% elif restore %}Restore{% endif %}" type="submit">{% if delete %}Delete{% elif restore %}Restore{% endif %}</button>
+      </form>
+    </div>
+  </div>
+  {% endfor %} {% endif %}
 </div>
 
 {% endblock %}

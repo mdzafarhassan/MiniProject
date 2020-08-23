@@ -37,14 +37,12 @@
           </li>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <li></li>
-          {% if request.session.is_admin %}
           <li>
             <a href="/blog_add" {% if blog_page %} class="is_active" {% endif %}>Add Blog</a>
           </li>
           <li>
             <a href="/add_book" {% if add_book_page %} class="is_active" {% endif %}>Add Book</a>
           </li>
-          {% endif %}
           <li>
             <a href="/author/hello" {% if test_page %} class="is_active" {% endif %}>Test</a>
           </li>

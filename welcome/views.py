@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from .models import BookMaster, BlogPost
 from managers.bulk_uploader import zip_uploader
 from zipfile import ZipFile
@@ -11,7 +11,6 @@ from django.contrib.auth.decorators import login_required
 
 
 def index(request):
-    print("  >> HOME")
     context = {'home_page': True}
     return render(request, 'index.html', context)
 
@@ -44,6 +43,13 @@ def add_book(request, **kwargs):
     context = {'add_book_page': True}
     action = kwargs.get('action')
     if action:
+        if request.method == "POST":
+            try:
+                BookMaster.objects.filter(id=request.POST.get(
+                    'book_id')).update(is_active=True if action == "restore" else False)
+            except Exception as ex:
+                print(ex)
+            return redirect(f'/add_book/{action}')
         filter = {}
         if action == 'delete':
             context['delete'] = True

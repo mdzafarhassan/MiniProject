@@ -48,7 +48,7 @@ def add_book(request, **kwargs):
                 BookMaster.objects.filter(id=request.POST.get(
                     'book_id')).update(is_active=True if action == "restore" else False)
             except Exception as ex:
-                print(ex)
+                pass
             return redirect(f'/add_book/{action}')
         filter = {}
         if action == 'delete':
@@ -124,19 +124,16 @@ def bulk_upload(request):
 
 
 def test(request):
-    from pprint import pprint
     context = {'test_page': True}
 
     books = list(BookMaster.objects.filter(book_type='Novel').annotate(test='book_genre').values(
         'book_name', 'book_type', 'book_genre', 'book_pages_count'))
 
     context['books'] = books
-    pprint(context)
 
     return render(request, 'test.html', context)
 
 
 def test2(request):
     context = {}
-    print("this is test funtion from vi")
     return render(request, 'test.html', context)

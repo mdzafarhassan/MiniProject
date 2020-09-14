@@ -389,8 +389,7 @@ body {
 }
 
 .book-container img {
-  padding: inherit;
-  width: 160px;
+  width: 100%;
   height: 250px;
 }
 

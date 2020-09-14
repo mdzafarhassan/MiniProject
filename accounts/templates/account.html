@@ -8,40 +8,18 @@
       <form action="account" method="POST" id="account-detail-update">
         {% csrf_token %}
         <label for="fname" id="fn">First Name :</label>
-        <input
-          type="text"
-          name="f_name"
-          value="{{user.first_name}}"
-          id="fname"
-          disabled
-          required
-        /><br />
+        <input type="text" name="f_name" value="{{user.first_name}}" id="fname" disabled required /><br />
 
         <label for="lname" id="ln">Last Name :</label>
-        <input
-          type="text"
-          name="l_name"
-          value="{{user.last_name}}"
-          disabled
-          required
-        /><br />
+        <input type="text" name="l_name" value="{{user.last_name}}" disabled required /><br />
 
         <label for="email" id="mail">Email :</label>
-        <input
-          type="email"
-          name="email_id"
-          value="{{user.email}}"
-          disabled
-          required
-        /><br />
+        <input type="email" name="email_id" value="{{user.email}}" disabled required /><br />
 
         <button type="button" id="btn_edit">Edit</button>
         <button type="reset" id="btn_cancel" hidden>Cancel</button>
         <button type="submit" id="btn_submit" hidden>Save</button>
-        <div class="input-information" id="message-area">
-          {% if messages %} {% for message in messages %} {{ message }} {%
-          endfor %} {% endif %}
-        </div>
+        <div class="input-information" id="message-area">{% if messages %} {% for message in messages %} {{ message }} {% endfor %} {% endif %}</div>
       </form>
       <div class="img-section">
         <img src="{{static}}accounts/images/{{path}}.jpg" alt="" />

@@ -36,7 +36,10 @@ def login(request):
         if user is not None:
             lastlogin = user.last_login
             timezones = 'Asia/Kolkata'
-            lastlogin = lastlogin.astimezone(pytz.timezone(timezones))
+            try:
+                lastlogin = lastlogin.astimezone(pytz.timezone(timezones))
+            except:
+                lastlogin = 'No Last Login record.'
             request.session['last_login'] = str(lastlogin)
 
             auth.login(request, user)

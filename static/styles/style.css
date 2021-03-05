@@ -534,6 +534,10 @@ body {
   background-color: #0000ff;
 }
 
+#account-detail-update button#btn_change_password {
+  background-color: #ff0000;
+}
+
 #account-detail-update button#btn_cancel {
   margin-right: 5rem;
   background-color: #ff0000;

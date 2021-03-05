@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import auth, User
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
-import pytz
 from datetime import datetime
+import pytz
 import re
 
 # Create your views here.
@@ -46,7 +47,7 @@ def login(request):
             return redirect(redirect_url)
         else:
             messages.info(request, 'Invalid credentials')
-            return redirect(request.url_info)
+            return redirect('/login')
 
     else:
         return render(request, 'login.html')
@@ -92,6 +93,20 @@ def register(request):
             return redirect('/register')
     else:
         return render(request, 'register.html')
+
+
+def change_password(request):
+    context = {}
+    if request.method == "POST":
+        form = PasswordChangeForm(data=request.POST, user=request.user)
+        if form.is_valid():
+            form.save()
+            auth.logout(request)
+            return redirect('/login')
+
+    form = PasswordChangeForm(user=request.user)
+    context['form'] = form
+    return render(request, 'change_password.html', context)
 
 
 def not_authorized(request):

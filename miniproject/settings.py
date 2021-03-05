@@ -164,7 +164,8 @@ PROFILE_IMG_DIR = os.path.join(BASE_DIR, 'profile_img')
 LOGIN_URL = '/login'
 
 STAFF_URL = [
-    'add_books', 'test'
+    'add_book',
+    'test'
 ]
 SUPERADMIN_URL = [
     'admin/'

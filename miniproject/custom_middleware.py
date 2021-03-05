@@ -4,6 +4,8 @@ from django.shortcuts import redirect
 from django.utils.http import is_safe_url
 
 REQUIRED_URL = [re.compile(url) for url in settings.LOGIN_REQUIRED_URL]
+STAFF_URL = [re.compile(url) for url in settings.STAFF_URL]
+SUPERADMIN_URL = [re.compile(url) for url in settings.SUPERADMIN_URL]
 
 
 class BasicMiddleware:
@@ -22,8 +24,8 @@ class BasicMiddleware:
     def process_view(self, request, view_func, view_args, view_kwargs):
         assert hasattr(request, 'user'), "BasicMiddleWare  >>  process_view"
 
+        path = request.path_info.lstrip('/')
         if not request.user.is_authenticated:
-            path = request.path_info.lstrip('/')
 
             if any(m.match(path) for m in REQUIRED_URL):
                 redirect_to = settings.LOGIN_URL
@@ -31,6 +33,12 @@ class BasicMiddleware:
                         url=request.path_info, allowed_hosts=request.get_host()):
                     redirect_to = f"{settings.LOGIN_URL}?next={request.path_info}"
                 return redirect(redirect_to)
+
+        if any(m.match(path) for m in STAFF_URL) and not request.user.is_staff:
+            print("YOU ARE NOT AUTHORIZED FOR STAFF_URL")
+
+        if any(m.match(path) for m in SUPERADMIN_URL) and not request.user.is_superuser:
+            print("YOU ARE NOT AUTHORIZED FOR SUPERADMIN_URL")
 
 
 '''

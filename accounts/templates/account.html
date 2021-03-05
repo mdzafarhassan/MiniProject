@@ -17,6 +17,7 @@
         <input type="email" name="email_id" value="{{user.email}}" disabled required /><br />
 
         <button type="button" id="btn_edit">Edit</button>
+        <button type="button" id="btn_change_password" onclick="window.location.href='/account/change-password';">Change Password</button>
         <button type="reset" id="btn_cancel" hidden>Cancel</button>
         <button type="submit" id="btn_submit" hidden>Save</button>
         <div class="input-information" id="message-area">{% if messages %} {% for message in messages %} {{ message }} {% endfor %} {% endif %}</div>

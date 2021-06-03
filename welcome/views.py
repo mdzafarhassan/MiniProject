@@ -10,6 +10,7 @@ from .form import BookForm, BlogPostForm
 from django.contrib.auth.decorators import login_required
 import django
 
+
 def index(request):
     print(django.get_version())
     context = {'home_page': True}

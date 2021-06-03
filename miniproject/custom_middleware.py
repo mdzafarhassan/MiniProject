@@ -2,6 +2,8 @@ import re
 from django.conf import settings
 from django.shortcuts import redirect
 from django.utils.http import is_safe_url
+from django.http import HttpResponse
+
 
 REQUIRED_URL = [re.compile(url) for url in settings.LOGIN_REQUIRED_URL]
 STAFF_URL = [re.compile(url) for url in settings.STAFF_URL]
@@ -35,10 +37,10 @@ class BasicMiddleware:
                 return redirect(redirect_to)
 
         if any(m.match(path) for m in STAFF_URL) and not request.user.is_staff:
-            print("YOU ARE NOT AUTHORIZED FOR STAFF_URL")
+            return HttpResponse("YOU ARE NOT AUTHORIZED FOR STAFF_URL")
 
         if any(m.match(path) for m in SUPERADMIN_URL) and not request.user.is_superuser:
-            print("YOU ARE NOT AUTHORIZED FOR SUPERADMIN_URL")
+            return HttpResponse("YOU ARE NOT AUTHORIZED FOR SUPERADMIN_URL")
 
 
 '''
